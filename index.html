@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>花肉 | 奔跑的树桩 & 迪魔王Devmore</title>
+  <meta name="description" content="花肉的个人主页 — 公众号「奔跑的树桩」与播客「迪魔王Devmore」">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;700;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --black: #1a1a1a;
+      --white: #fffdf7;
+      --pink: #ff5eac;
+      --yellow: #ffe156;
+      --blue: #5b9aff;
+      --green: #5bff9a;
+      --orange: #ff8a5b;
+      --purple: #c17aff;
+      --border: 3px solid var(--black);
+      --shadow: 5px 5px 0px var(--black);
+      --shadow-sm: 3px 3px 0px var(--black);
+      --radius: 16px;
+      --radius-sm: 10px;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Noto Sans SC', 'Space Grotesk', -apple-system, sans-serif;
+      background: var(--white);
+      color: var(--black);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* Dot grid background */
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background-image: radial-gradient(circle, #e0e0e0 1px, transparent 1px);
+      background-size: 32px 32px;
+      opacity: 0.35;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .container {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 0 24px;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Hero */
+    .hero {
+      padding: 64px 0 48px;
+      text-align: center;
+      position: relative;
+    }
+
+    .avatar-box {
+      display: inline-block;
+      width: 140px;
+      height: 140px;
+      background: var(--yellow);
+      border: var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      margin-bottom: 24px;
+      transform: rotate(-2deg);
+      transition: transform 0.3s ease;
+      overflow: hidden;
+    }
+
+    .avatar-box:hover {
+      transform: rotate(2deg) scale(1.05);
+    }
+
+    .avatar-box img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .hero h1 {
+      font-family: 'Space Grotesk', 'Noto Sans SC', sans-serif;
+      font-size: 3rem;
+      font-weight: 900;
+      letter-spacing: -1px;
+      margin-bottom: 12px;
+    }
+
+    .hero .tagline {
+      font-size: 1.15rem;
+      font-weight: 500;
+      color: #555;
+    }
+
+    .hero .tagline strong {
+      background: var(--yellow);
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-weight: 700;
+      color: var(--black);
+    }
+
+    /* Floating deco stickers */
+    .deco-float {
+      position: absolute;
+      pointer-events: none;
+      z-index: 2;
+    }
+
+    .deco-float.top-right {
+      top: 20px;
+      right: -30px;
+      width: 90px;
+      transform: rotate(8deg);
+    }
+
+    .deco-float.top-left {
+      top: 40px;
+      left: -20px;
+      width: 80px;
+      transform: rotate(-10deg);
+    }
+
+    .deco-float img {
+      width: 100%;
+      border: 2px solid var(--black);
+      border-radius: var(--radius-sm);
+      box-shadow: var(--shadow-sm);
+    }
+
+    /* Sticker Badges */
+    .sticker-row {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      margin-top: 20px;
+      flex-wrap: wrap;
+    }
+
+    .sticker {
+      display: inline-block;
+      padding: 6px 14px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      border: 2px solid var(--black);
+      border-radius: 50px;
+      background: var(--white);
+      box-shadow: var(--shadow-sm);
+      transform: rotate(-1deg);
+    }
+
+    .sticker:nth-child(2) { transform: rotate(1.5deg); background: var(--pink); color: #fff; border-color: var(--pink); }
+    .sticker:nth-child(3) { transform: rotate(-0.5deg); background: var(--blue); color: #fff; border-color: var(--blue); }
+
+    /* Section */
+    .section {
+      margin-bottom: 44px;
+    }
+
+    .section-label {
+      display: inline-block;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      padding: 4px 12px;
+      background: var(--black);
+      color: var(--white);
+      border-radius: 4px;
+      margin-bottom: 16px;
+    }
+
+    /* Cards */
+    .card {
+      background: var(--white);
+      border: var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 28px;
+      transition: all 0.2s ease;
+      position: relative;
+    }
+
+    .card:hover {
+      box-shadow: 7px 7px 0px var(--black);
+      transform: translate(-2px, -2px);
+    }
+
+    .card + .card {
+      margin-top: 20px;
+    }
+
+    /* About */
+    .about-card {
+      background: var(--yellow);
+    }
+
+    .about-card p {
+      font-size: 0.95rem;
+      line-height: 1.9;
+      margin-bottom: 14px;
+      color: var(--black);
+    }
+
+    .about-card p:last-child {
+      margin-bottom: 0;
+    }
+
+    .marker {
+      background: var(--white);
+      padding: 1px 6px;
+      border-radius: 4px;
+      font-weight: 700;
+    }
+
+    /* Card with deco */
+    .card-deco {
+      position: absolute;
+      width: 70px;
+      top: -20px;
+      right: -15px;
+      transform: rotate(12deg);
+      pointer-events: none;
+    }
+
+    .card-deco img {
+      width: 100%;
+      filter: drop-shadow(2px 2px 0px rgba(0,0,0,0.15));
+    }
+
+    /* Card Head */
+    .card-head {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+
+    .card-emoji {
+      width: 52px;
+      height: 52px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 28px;
+      background: var(--pink);
+      border: 2.5px solid var(--black);
+      border-radius: var(--radius-sm);
+      box-shadow: var(--shadow-sm);
+      flex-shrink: 0;
+    }
+
+    .card-head-text h3 {
+      font-size: 1.25rem;
+      font-weight: 800;
+    }
+
+    .card-head-text span {
+      font-size: 0.85rem;
+      color: #666;
+      font-weight: 500;
+    }
+
+    .card-body {
+      font-size: 0.9rem;
+      line-height: 1.7;
+      color: #444;
+      margin-bottom: 18px;
+    }
+
+    /* Series */
+    .series-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 18px;
+    }
+
+    .series-chip {
+      padding: 5px 12px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      border: 2px solid var(--black);
+      border-radius: 6px;
+      background: var(--white);
+    }
+
+    .series-chip:nth-child(1) { background: #ffe8f0; }
+    .series-chip:nth-child(2) { background: #e8f4ff; }
+    .series-chip:nth-child(3) { background: #e8ffe8; }
+
+    /* Platform Buttons */
+    .platforms {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .platform-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 10px 18px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      text-decoration: none;
+      color: var(--black);
+      background: var(--white);
+      border: 2.5px solid var(--black);
+      border-radius: 50px;
+      box-shadow: var(--shadow-sm);
+      transition: all 0.15s ease;
+    }
+
+    .platform-btn:hover {
+      transform: translate(-2px, -2px);
+      box-shadow: 5px 5px 0px var(--black);
+    }
+
+    .platform-btn:active {
+      transform: translate(0, 0);
+      box-shadow: 2px 2px 0px var(--black);
+    }
+
+    .platform-btn.xiaoyuzhou { background: #fff3e0; }
+    .platform-btn.apple { background: #f3e8ff; }
+    .platform-btn.ximalaya { background: #ffe8e8; }
+    .platform-btn.wechat-search { background: #e8ffe8; }
+
+    /* WeChat Card */
+    .wechat-card .card-emoji {
+      background: var(--green);
+    }
+
+    /* Deco strip - Pokemon stickers */
+    .deco-strip {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      margin: 48px 0;
+      flex-wrap: wrap;
+    }
+
+    .deco-strip-item {
+      width: 80px;
+      height: 80px;
+      border: 2.5px solid var(--black);
+      border-radius: var(--radius-sm);
+      box-shadow: var(--shadow-sm);
+      overflow: hidden;
+      transition: transform 0.2s ease;
+    }
+
+    .deco-strip-item:nth-child(1) { transform: rotate(-4deg); background: #fff8e0; }
+    .deco-strip-item:nth-child(2) { transform: rotate(2deg); background: #ffe8f4; }
+    .deco-strip-item:nth-child(3) { transform: rotate(-1deg); background: #e8f4ff; }
+    .deco-strip-item:nth-child(4) { transform: rotate(3deg); background: #fff0e0; }
+
+    .deco-strip-item:hover {
+      transform: rotate(0deg) scale(1.15);
+      z-index: 10;
+    }
+
+    .deco-strip-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* Contact */
+    .contact-card {
+      background: var(--blue);
+      text-align: center;
+    }
+
+    .contact-card p {
+      font-size: 0.95rem;
+      color: var(--white);
+      margin-bottom: 18px;
+      font-weight: 500;
+    }
+
+    .email-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 32px;
+      font-size: 0.95rem;
+      font-weight: 800;
+      text-decoration: none;
+      color: var(--black);
+      background: var(--yellow);
+      border: 2.5px solid var(--black);
+      border-radius: 50px;
+      box-shadow: var(--shadow-sm);
+      transition: all 0.15s ease;
+    }
+
+    .email-btn:hover {
+      transform: translate(-2px, -2px);
+      box-shadow: 5px 5px 0px var(--black);
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 56px 0 32px;
+      font-size: 0.8rem;
+      color: #999;
+      font-weight: 500;
+    }
+
+    footer span {
+      display: inline-block;
+      padding: 4px 10px;
+      border: 1.5px solid #ddd;
+      border-radius: 4px;
+    }
+
+    /* Mobile */
+    @media (max-width: 640px) {
+      .hero {
+        padding: 48px 0 36px;
+      }
+
+      .hero h1 {
+        font-size: 2.2rem;
+      }
+
+      .hero .tagline {
+        font-size: 1rem;
+      }
+
+      .avatar-box {
+        width: 110px;
+        height: 110px;
+      }
+
+      .card {
+        padding: 22px;
+      }
+
+      .card-head {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+      }
+
+      .platforms {
+        gap: 8px;
+      }
+
+      .platform-btn {
+        padding: 8px 14px;
+        font-size: 0.8rem;
+      }
+
+      .container {
+        padding: 0 16px;
+      }
+
+      .sticker-row {
+        gap: 8px;
+      }
+
+      .sticker {
+        font-size: 0.72rem;
+        padding: 5px 10px;
+      }
+
+      .deco-float {
+        display: none;
+      }
+
+      .card-deco {
+        width: 50px;
+        top: -14px;
+        right: -8px;
+      }
+
+      .deco-strip-item {
+        width: 64px;
+        height: 64px;
+      }
+
+      .deco-strip {
+        gap: 12px;
+        margin: 36px 0;
+      }
+    }
+
+    /* Selection */
+    ::selection {
+      background: var(--pink);
+      color: var(--white);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Hero -->
+    <section class="hero">
+      <div class="avatar-box">
+        <img src="avatar-hero.png" alt="花肉 - 阿拉蕾风格头像">
+      </div>
+      <h1>花肉</h1>
+      <p class="tagline">让有意义的事情<strong>有意思</strong></p>
+      <div class="sticker-row">
+        <span class="sticker">开发者生态 10yr+</span>
+        <span class="sticker">播客主播</span>
+        <span class="sticker">开源 & 云原生</span>
+      </div>
+    </section>
+
+    <!-- About -->
+    <section class="section">
+      <span class="section-label">About</span>
+      <div class="card about-card">
+        <p>嗨，我是花肉。在<span class="marker">开发者生态</span>领域摸爬滚打了十余年，经历了从前端到数据库、从云原生到开源运动的各种浪潮。</p>
+        <p>比起正襟危坐地输出观点，我更喜欢用聊天的方式把技术圈里那些<span class="marker">有趣的人和事</span>讲给你听。于是有了播客「迪魔王Devmore」，和朋友们聊职场、聊生活、聊一切跟开发者有关的故事。</p>
+        <p>公众号「奔跑的树桩」则是留给自己的一小块田地——记录不急不慢的思考和生活碎片。</p>
+      </div>
+    </section>
+
+    <!-- Deco Strip: Pokemon learning AI -->
+    <section class="deco-strip" aria-label="装饰贴纸">
+      <div class="deco-strip-item">
+        <img src="deco-pokemon-ai.png" alt="" style="object-position: top left;">
+      </div>
+      <div class="deco-strip-item">
+        <img src="deco-pokemon-ai.png" alt="" style="object-position: top right;">
+      </div>
+      <div class="deco-strip-item">
+        <img src="deco-pokemon-ai.png" alt="" style="object-position: bottom left;">
+      </div>
+      <div class="deco-strip-item">
+        <img src="deco-pokemon-ai.png" alt="" style="object-position: bottom right;">
+      </div>
+    </section>
+
+    <!-- Podcast -->
+    <section class="section">
+      <span class="section-label">Podcast</span>
+      <div class="card podcast-card">
+        <div class="card-head">
+          <div class="card-emoji">🎙️</div>
+          <div class="card-head-text">
+            <h3>迪魔王Devmore</h3>
+            <span>More about Dev</span>
+          </div>
+        </div>
+        <div class="series-list">
+          <span class="series-chip">DevmoreWork · 职场</span>
+          <span class="series-chip">DevmoreLife · 生活</span>
+          <span class="series-chip">MeetDevmore · 对谈</span>
+        </div>
+        <p class="card-body">
+          和开发者朋友们聊职业选择、技术人生、AI 浪潮下的变与不变。比起有意义，有趣的事才会坚持做下去。
+        </p>
+        <div class="platforms">
+          <a class="platform-btn xiaoyuzhou" href="https://www.xiaoyuzhoufm.com/podcast/6114caf41a18cc41b56c4153" target="_blank" rel="noopener">
+            🟠 小宇宙
+          </a>
+          <a class="platform-btn apple" href="https://podcasts.apple.com/cn/podcast/%E8%BF%AA%E9%AD%94%E7%8E%8B-devmore-more-about-dev/id1580924689" target="_blank" rel="noopener">
+            🍎 Apple Podcasts
+          </a>
+          <a class="platform-btn ximalaya" href="https://www.ximalaya.com/album/52069269" target="_blank" rel="noopener">
+            🔴 喜马拉雅
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- WeChat -->
+    <section class="section">
+      <span class="section-label">WeChat</span>
+      <div class="card wechat-card">
+        <div class="card-head">
+          <div class="card-emoji">📝</div>
+          <div class="card-head-text">
+            <h3>奔跑的树桩</h3>
+            <span>个人记录 · 月更</span>
+          </div>
+        </div>
+        <p class="card-body">
+          工作之外的一块自留地。记录不急不慢的思考、生活里值得停下来的瞬间，以及那些还没想清楚但忍不住想说的话。
+        </p>
+        <div class="platforms">
+          <span class="platform-btn wechat-search">
+            💚 微信搜索「奔跑的树桩」
+          </span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section class="section">
+      <span class="section-label">Contact</span>
+      <div class="card contact-card">
+        <p>合作、聊天、交换想法，都欢迎来信</p>
+        <a class="email-btn" href="mailto:zero917126@qq.com">
+          ✉️ 给我写邮件
+        </a>
+      </div>
+    </section>
+
+    <footer>
+      <span>© 2026 花肉 · built with fun</span>
+    </footer>
+  </div>
+</body>
+</html>
